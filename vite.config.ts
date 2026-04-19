@@ -1,12 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), basicSsl()],
+  plugins: [react()],
+  base: '/',                    // ← Isso é o que estava errado
   build: {
-    outDir: './docs'
+    outDir: 'docs',             // O template usa "docs" como pasta de saída
   },
-  base: '/vite-boilerplate/'
+  server: {
+    port: 5173,
+    host: true
+  }
 });

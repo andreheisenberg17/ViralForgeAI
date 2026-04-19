@@ -6,13 +6,6 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
-    target: 'es2015',
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/index.js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
-      }
-    }
+    target: 'es2015'          // importante para o Telegram
   }
 });

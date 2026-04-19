@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',                    // ← Isso é o que estava errado
+  base: '/',                    // ← Isso corrige os 404
   build: {
-    outDir: 'docs',             // O template usa "docs" como pasta de saída
+    outDir: 'docs',             // ← Pasta onde o template gera os arquivos
   },
   server: {
     port: 5173,

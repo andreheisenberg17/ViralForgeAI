@@ -7,7 +7,6 @@ function App() {
   const [memeUrl, setMemeUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Inicializa o Telegram Mini App
   useEffect(() => {
     const tg = (window as any).Telegram?.WebApp;
     if (tg) {
@@ -19,7 +18,6 @@ function App() {
 
   const generateMeme = async () => {
     if (!prompt.trim()) return;
-
     setLoading(true);
     setMemeUrl('');
 
@@ -45,30 +43,60 @@ function App() {
         setMemeUrl(data.images[0].url);
       }
     } catch (error) {
-      console.error("Erro ao gerar meme:", error);
+      console.error("Erro:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: 20, textAlign: 'center', fontFamily: 'sans-serif' }}>
-      <h1>ViralForge</h1>
+    <div style={{
+      minHeight: '100vh',
+      background: '#000',
+      color: '#fff',
+      padding: '20px',
+      fontFamily: 'system-ui, sans-serif',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      <h1 style={{ marginBottom: '20px' }}>ViralForge</h1>
+      
       <input
         type="text"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         placeholder="Digite o prompt do meme..."
-        style={{ width: '80%', padding: 10, fontSize: 16 }}
+        style={{
+          width: '100%',
+          maxWidth: '400px',
+          padding: '15px',
+          fontSize: '16px',
+          borderRadius: '12px',
+          border: 'none',
+          marginBottom: '20px'
+        }}
       />
-      <br /><br />
-      <button onClick={generateMeme} disabled={loading} style={{ padding: '12px 24px', fontSize: 18 }}>
+
+      <button
+        onClick={generateMeme}
+        disabled={loading}
+        style={{
+          padding: '15px 30px',
+          fontSize: '18px',
+          background: '#0088cc',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '12px',
+          cursor: 'pointer'
+        }}
+      >
         {loading ? 'Gerando...' : 'Gerar Meme'}
       </button>
 
       {memeUrl && (
-        <div style={{ marginTop: 30 }}>
-          <img src={memeUrl} alt="Meme gerado" style={{ maxWidth: '100%', borderRadius: 12 }} />
+        <div style={{ marginTop: '30px', maxWidth: '100%' }}>
+          <img src={memeUrl} alt="Meme" style={{ maxWidth: '100%', borderRadius: '12px' }} />
         </div>
       )}
     </div>

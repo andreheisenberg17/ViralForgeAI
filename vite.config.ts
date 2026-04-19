@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
-    outDir: 'dist'        // ← força o Vite a usar a pasta dist
+    outDir: 'dist',
+    target: 'es2015'        
   }
 });
